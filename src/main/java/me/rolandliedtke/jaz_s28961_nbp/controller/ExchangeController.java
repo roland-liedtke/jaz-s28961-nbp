@@ -5,12 +5,15 @@ import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import me.rolandliedtke.jaz_s28961_nbp.model.Exchange;
 import me.rolandliedtke.jaz_s28961_nbp.service.ExchangeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.Currency;
 
 @RestController
@@ -31,8 +34,8 @@ public class ExchangeController {
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
     @GetMapping("/{currency}")
-    public ResponseEntity<Currency> getString(@PathVariable Currency currency) {
-        return ResponseEntity.ok(currency);
+    public ResponseEntity<Exchange> getExchangeRate(@PathVariable Currency currency, @RequestParam LocalDate startDate, @RequestParam LocalDate stopDate) {
+        return ResponseEntity.ok(exchangeService.getExchangeRate(currency, startDate, stopDate));
     }
 
 }
