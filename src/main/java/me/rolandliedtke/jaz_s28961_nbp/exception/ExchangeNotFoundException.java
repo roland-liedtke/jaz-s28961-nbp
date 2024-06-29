@@ -1,4 +1,4 @@
-package me.rolandliedtke.jaz_s28961_nbp.service;
+package me.rolandliedtke.jaz_s28961_nbp.exception;
 
-public class ExchangeNotFoundException {
+public class ExchangeNotFoundException extends RuntimeException {
 }

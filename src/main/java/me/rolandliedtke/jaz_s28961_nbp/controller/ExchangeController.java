@@ -33,9 +33,9 @@ public class ExchangeController {
             @ApiResponse(responseCode = "404", description = "Exchange not found", content = @Content),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     })
-    @GetMapping("/{currency}")
-    public ResponseEntity<Exchange> getExchangeRate(@PathVariable Currency currency, @RequestParam LocalDate startDate, @RequestParam LocalDate stopDate) {
-        return ResponseEntity.ok(exchangeService.getExchangeRate(currency, startDate, stopDate));
+    @GetMapping("/exchange")
+    public ResponseEntity<Exchange> getExchangeRate(@RequestParam Currency currency, @RequestParam LocalDate startDate, @RequestParam LocalDate endDate) {
+        return ResponseEntity.ok(exchangeService.getExchangeRate(currency, startDate, endDate));
     }
 
 }
